@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
   - name: 30085-80
-    port: 30085
+    port: 80
     nodePort: 30085
     protocol: TCP
     targetPort: 80
