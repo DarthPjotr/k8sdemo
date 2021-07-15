@@ -4,16 +4,16 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: nginx-svc
-  name: nginx-svc
-  namespace: demo
+    app: my-nginx-app
+  name: my-nginx-svc
+  namespace: default
 spec:
   ports:
-  - name: 30085-80
-    port: 80
-    nodePort: 30085
+  - name: 32085-8080
+    port: 8080
+    nodePort: 32085
     protocol: TCP
-    targetPort: 80
+    targetPort: 8080
   selector:
-    app: nginx-app
+    app: my-nginx-app
   type: NodePort

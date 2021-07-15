@@ -1,0 +1,27 @@
+
+# kubectl run test --image=nginx --port=80 --dry-run=client -o yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx-dep
+  namespace: default
+  labels:
+    depl: my-nginx-dep
+    app: my-nginx-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-nginx-app
+  template:
+    metadata:
+      labels:
+        app: my-nginx-app    
+    spec:
+      containers:
+      - name: my-nginx
+        image: 10.103.104.153:80/my-nginx
+        ports:
+        - name: http
+          containerPort: 8080
+  
