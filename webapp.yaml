@@ -1,0 +1,46 @@
+
+# kubectl run test --image=nginx --port=80 --dry-run=client -o yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: color-deployment
+  namespace: demo
+  labels:
+    depl: color-depl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: color-app
+  template:
+    metadata:
+      labels:
+        app: color-app    
+    spec:
+      containers:
+      - name: color
+        image: kodekloud/webapp-color
+        ports:
+        - name: http
+          containerPort: 8080
+
+---  
+# kubectl create service nodeport nginx-svc --tcp=30085:80 --dry-run=client -o yaml > service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: color-svc
+  name: color-svc
+  namespace: demo
+spec:
+  ports:
+  - name: 30080-8080
+    port: 8080
+    nodePort: 30080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: color-app
+  type: NodePort
