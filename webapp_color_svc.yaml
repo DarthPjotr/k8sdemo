@@ -1,0 +1,19 @@
+# kubectl create service nodeport nginx-svc --tcp=30085:80 --dry-run=client -o yaml > service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: color-svc
+  name: color-svc
+  namespace: demo
+spec:
+  ports:
+  - name: 30080-8080
+    port: 8080
+    nodePort: 30080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: color-app
+  type: NodePort
