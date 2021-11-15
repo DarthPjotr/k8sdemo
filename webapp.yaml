@@ -13,7 +13,7 @@ metadata:
   labels:
     depl: color-depl
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: color-app
