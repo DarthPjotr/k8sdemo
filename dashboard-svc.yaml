@@ -1,0 +1,19 @@
+# kubectl create service nodeport nginx-svc --tcp=30085:80 --dry-run=client -o yaml > service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dashboard-svc
+  name: dashboard-svc
+  namespace: kube-system
+spec:
+  ports:
+  - name: 10443-80
+    port: 8443
+    nodePort: 30443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    k8s-app: kubernetes-dashboard
+  type: NodePort
